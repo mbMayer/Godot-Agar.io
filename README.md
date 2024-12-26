@@ -11,11 +11,11 @@
 - Simple Bot for single-player
 <br>
 <h2>How to use </h2>
-1. Add "Player" node to your scene
+1. Add "Player" scene to your game scene
 <br>
-2. Add "Enemy" node to your scene
+2. Add "Enemy" scene to your game scene
 <br>
-3. Add "Spawn" node to your scene
+3. Add "Spawn" scene to your game scene
 <br>
 4. In "Spawn" node inspector chose "Cell" node, and count of spawning cells
 <br>
