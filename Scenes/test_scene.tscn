@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc0lldf7yqwku"]
+
+[ext_resource type="PackedScene" uid="uid://bx1034fr7jbl5" path="res://Scenes/spawner.tscn" id="2_coq8p"]
+[ext_resource type="PackedScene" uid="uid://bnl7boyb8c6yo" path="res://Scenes/player.tscn" id="2_sasra"]
+[ext_resource type="PackedScene" uid="uid://bpkurseq6mgna" path="res://Scenes/enemy.tscn" id="4_coq8p"]
+[ext_resource type="Texture2D" uid="uid://c2a1dn4yyi0j0" path="res://Assets/background.jpg" id="5_2nij2"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.960351, 0.960351, 0.960351, 1)
+z_index = -1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8671.0
+offset_top = -8671.0
+offset_right = 10646.0
+offset_bottom = 10646.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_2nij2")
+stretch_mode = 1
+
+[node name="Spawner" parent="." instance=ExtResource("2_coq8p")]
+
+[node name="Player" parent="." instance=ExtResource("2_sasra")]
+position = Vector2(591, 310)
+color = Color(1, 0.392157, 0, 1)
+speed = 250
+
+[node name="Enemy" parent="." instance=ExtResource("4_coq8p")]
+position = Vector2(64, 47)
+
+[node name="Enemy2" parent="." instance=ExtResource("4_coq8p")]
+position = Vector2(989, 505)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_coq8p")]
+position = Vector2(673, 192)

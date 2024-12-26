@@ -1,0 +1,76 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpkurseq6mgna"]
+
+[ext_resource type="Script" uid="uid://bht8i7pokimci" path="res://Scripts/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://c4x3tmplfef5i" path="res://Assets/WhiteCircle.png" id="1_7k104"]
+[ext_resource type="Shader" uid="uid://c3glccja4gwip" path="res://Shaders/wobbleshader.gdshader" id="2_qi2p4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iifgy"]
+shader = ExtResource("2_qi2p4")
+shader_parameter/alpha_tresh = 0.8
+shader_parameter/shrink = 2.0
+shader_parameter/offset_mul = 2.0
+shader_parameter/coff_angle = 0.0
+shader_parameter/coff_mul = 0.5
+shader_parameter/coff_std = 0.2
+shader_parameter/amp1 = 0.125
+shader_parameter/freq1 = 4.0
+shader_parameter/speed1 = 5.0
+shader_parameter/amp2 = 0.125
+shader_parameter/freq2 = 9.0
+shader_parameter/speed2 = 1.46
+shader_parameter/cols = null
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qi2p4"]
+radius = 800.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
+radius = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iifgy"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_4gyqm")
+color = Color(1, 0, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_iifgy")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_7k104")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 7
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_qi2p4")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4gyqm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iifgy")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

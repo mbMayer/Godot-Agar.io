@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx1034fr7jbl5"]
+
+[ext_resource type="Script" uid="uid://5h4fy42etqfw" path="res://Scripts/spawner.gd" id="1_ttk4a"]
+[ext_resource type="PackedScene" uid="uid://i8p83ghop788" path="res://Scenes/cell.tscn" id="2_mcln3"]
+
+[node name="Spawner" type="Node"]
+script = ExtResource("1_ttk4a")
+cell = ExtResource("2_mcln3")
+count = 100

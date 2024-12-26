@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://i8p83ghop788"]
+
+[ext_resource type="Script" uid="uid://d1ysye62vl6ty" path="res://Scripts/cell.gd" id="1_gwrgs"]
+[ext_resource type="Texture2D" uid="uid://c4x3tmplfef5i" path="res://Assets/WhiteCircle.png" id="1_yh0nt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gwrgs"]
+radius = 25.0
+
+[node name="Cell" type="Area2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_gwrgs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_yh0nt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gwrgs")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

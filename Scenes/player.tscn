@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bnl7boyb8c6yo"]
+
+[ext_resource type="Script" uid="uid://d4226x8f8cxy" path="res://Scripts/Player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c4x3tmplfef5i" path="res://Assets/WhiteCircle.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://4fwkhnlv7k6f" path="res://Assets/WhiteBorder.png" id="3_i3pqv"]
+[ext_resource type="Shader" uid="uid://c3glccja4gwip" path="res://Shaders/wobbleshader.gdshader" id="4_sweqy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sweqy"]
+shader = ExtResource("4_sweqy")
+shader_parameter/alpha_tresh = 0.8
+shader_parameter/shrink = 100.0
+shader_parameter/offset_mul = 2.0
+shader_parameter/coff_angle = 0.0
+shader_parameter/coff_mul = 0.0
+shader_parameter/coff_std = 0.2
+shader_parameter/amp1 = 0.125
+shader_parameter/freq1 = 4.0
+shader_parameter/speed1 = 5.0
+shader_parameter/amp2 = 0.125
+shader_parameter/freq2 = 9.0
+shader_parameter/speed2 = 1.46
+shader_parameter/cols = null
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 25.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 15
+script = ExtResource("1_onrkg")
+color = Color(1, 0.47451, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sweqy")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_i3pqv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+self_modulate = Color(1, 0, 1, 1)
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 480.0
+offset_bottom = 480.0
+scale = Vector2(0.125, 0.125)
+value = 100.0
+fill_mode = 4
+texture_progress = ExtResource("3_i3pqv")
